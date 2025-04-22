@@ -1,0 +1,10 @@
+{
+    "database": {
+        "host": "localhost",
+        "username": "admin",
+        "password": "weakpassword123"
+    },
+    "api": {
+        "key": "FAKE-KEY-12345"
+    }
+}
