@@ -3,32 +3,25 @@ name: Honeypot Test
 on:
   push:
     branches:
-      - main  # Run this workflow whenever you push to the main branch
-  pull_request:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'  # Change this to your Python version
+        python-version: '3.9'
 
     - name: Install dependencies
       run: |
-        python -m venv env
-        source env/bin/activate
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Start Flask server
-      run: |
-        python src/main.py &
-        sleep 5  # Wait for the server to start
-
-    - name: Test Honeypot
-      run: python test_honeypot.py
+    - name: Run honeypot tests
+      run: python Project/test_honeypot.py
